@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10131c" />
+  <meta name="description" content="Emote Lens — thoughtful text emotion analysis powered by BiGRU." />
+  <title>Emote Lens — Emotion, in context</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand"><div class="brand-mark">◉</div><div>emote<span>lens</span></div></div>
+      <div class="status"><span class="dot" id="statusDot"></span><span id="statusText">Checking model status</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Text emotion intelligence</div>
+      <h1>Read the feeling<br><span class="gradient">behind the words.</span></h1>
+      <p class="intro">A considered look at the emotion in a sentence. Add a thought, and Emote Lens will analyze its emotional tone.</p>
+    </section>
+
+    <main>
+      <section class="card input-card">
+        <div class="card-top"><div class="card-title">Your text</div><div class="step">01 / INPUT</div></div>
+        <label for="userText">What would you like to analyze?</label>
+        <textarea id="userText" maxlength="2000" placeholder="Write a sentence or a few lines here..."></textarea>
+        <div class="input-meta"><span>Up to 2,000 characters</span><span id="charCount">0 / 2000</span></div>
+        <div class="samples" aria-label="Example texts">
+          <button class="sample" type="button" data-text="I can't stop smiling. Everything finally feels like it's falling into place.">A good day</button>
+          <button class="sample" type="button" data-text="I feel overwhelmed and worried about what happens next.">Feeling uncertain</button>
+          <button class="sample" type="button" data-text="I miss the people I used to see every day.">Missing someone</button>
+        </div>
+        <div class="actions">
+          <button class="analyze" id="analyzeBtn" type="button">Analyze emotion <span aria-hidden="true">↗</span></button>
+          <button class="clear" id="clearBtn" type="button">Clear</button>
+        </div>
+        <p class="privacy">Your text is sent to this app's prediction API for analysis. Avoid entering sensitive personal information.</p>
+        <div class="notice" id="notice" role="status"></div>
+      </section>
+
+      <section class="card result-card">
+        <div class="card-top"><div class="card-title">Emotion reading</div><div class="step">02 / INSIGHT</div></div>
+        <div class="empty-state" id="emptyState">
+          <div class="orbit"><div class="orbit-icon">✳</div></div>
+          <strong>Your result will appear here</strong>
+          <p>Once you analyze your text, you'll see the leading emotion and the model's full probability breakdown.</p>
+        </div>
+        <div class="result-content" id="resultContent" aria-live="polite">
+          <div class="result-label">Detected emotional tone</div>
+          <div class="emotion-row">
+            <div class="emotion-emoji" id="emotionEmoji">😄</div>
+            <div><div class="emotion-name" id="emotionName">Joy</div><div class="confidence" id="confidence">0% model confidence</div></div>
+          </div>
+          <div class="section-head"><span>Emotion distribution</span><span>MODEL SCORES</span></div>
+          <div id="meters"></div>
+        </div>
+      </section>
+    </main>
+    <footer>EMOTE LENS <span>·</span> Text-based emotion classification <span>·</span> BiGRU</footer>
+  </div>
+  <script src="/static/script.js" defer></script>
+</body>
+</html>
